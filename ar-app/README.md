@@ -26,6 +26,7 @@ Workflow should be as follows for new tasks:
 ``` bash
 # Install dependencies
 npm install
+tns install
 
 # Build for production
 tns build <platform> --bundle
