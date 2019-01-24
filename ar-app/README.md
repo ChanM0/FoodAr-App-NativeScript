@@ -10,12 +10,17 @@
 > Everything requires TWO reviews before being pushed into DEV.  ALWAYS PULL FROM DEV.  Every TWO weeks we will push to master.  
 
 Workflow should be as follows for new tasks:
-1) git pull dev
+1) git pull dev or git pull origin dev
 2) git checkout -b FAN-<Task Number> -- <Task Description>
 3) git add .
 4) git commit -m "<nice description of code>"
 5) git push (might need git push upstream command *READ YOUR TERMINAL*)
-
+  
+# Useful Commands
+- git branch (tells you the branch you are on)
+- git branch -D <branch name> (deletes branch)
+- git clone <url> (clones repo AND PUTS YOU ON MASTER BRANCH)
+  
 ## Usage
 
 ``` bash
