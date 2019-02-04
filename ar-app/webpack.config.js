@@ -196,6 +196,16 @@ module.exports = env => {
                         compiler: NsVueTemplateCompiler,
                     },
                 },
+                {
+                    test: /\.(eot|ttf|otf)(\?.*)?$/,
+                    loader: 'file-loader',
+                    options: {
+                        limit: 10000,
+                        name: '[name].[ext]',
+                        outputPath: '/fonts/',    // where the fonts will go
+                        publicPath: '/assets'       // override the default path
+                    }
+                },
             ],
         },
         plugins: [
@@ -218,7 +228,7 @@ module.exports = env => {
             // Copy assets to out dir. Add your own globs as needed.
             new CopyWebpackPlugin([
                 { from: "fonts/**" },
-                { from: "**/*.+(jpg|png)" },
+                { from: "**/*.+(ttf|svg|jpg|png)" },
                 { from: "assets/**/*" },
             ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
             // Generate a bundle starter script and activate it in package.json

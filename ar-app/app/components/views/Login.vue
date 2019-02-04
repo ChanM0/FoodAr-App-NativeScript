@@ -63,7 +63,8 @@ export default {
             this.login();
         },
 
-        login() {
+		login() {
+			
             this.$navigateTo(home);
         },
 
