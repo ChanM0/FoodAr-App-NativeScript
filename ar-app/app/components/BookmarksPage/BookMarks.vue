@@ -1,31 +1,64 @@
 <template>
     <Page class="page">
         <ActionBar title="Bookmarks" class="action-bar" />
-        <ScrollView>
-            <ListView class="list-group" for="country in countries" @itemTap="onItemTap"
-                style="height:100%">
-                <v-template>
-                    <FlexboxLayout flexDirection="row" class="list-group-item">
-                        <Image :src="country.imageSrc" class="thumb img-circle" />
-                        <Label :text="country.name" class="list-group-item-heading"
-                            style="width: 60%" />
-                    </FlexboxLayout>
-                </v-template>
-            </ListView>
-        </ScrollView>
+        <StackLayout orientation="vertical" width="100%" height="100%"
+            backgroundColor="lightgray" @tap="clearFocus">
+            <SearchBar hint="Search hint" :text="searchPhrase" @submit="onSearchSubmit"
+                :automaticallyAdjustsScrollViewInsets="true" ref="searchBar" />
+            <SegmentedBar :items="segmentedBarItems" v-model="selectedBarIndex"
+                class="choiceBar" @itemTap="switchBookMarksType" />
+            <ScrollView>
+                <ListView class="list-group" for="country in countries" @itemTap="onItemTap"
+                    style="height:90%">
+                    <v-template>
+                        <FlexboxLayout flexDirection="row" class="list-group-item">
+                            <Image :src="country.imageSrc" class="thumb img-circle" />
+                            <Label :text="country.name" class="list-group-item-heading"
+                                style="width: 60%" />
+                        </FlexboxLayout>
+                    </v-template>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+
     </Page>
 </template>
 
 <script>
     export default {
         methods: {
+            onSearchSubmit(args) {
+                let searchBarx = args.object;
+                console.log("You are searching for " + searchBar.text);
+            },
+
             onItemTap: function(args) {
                 console.log("Item with index: " + args.index + " tapped");
+            },
+            switchBookMarksType: function(args) {
+                console.log(args);
+                console.log("switch");
+            },
+            clearFocus() {
+                this.$refs.searchBar.nativeView.dismissSoftInput();
             }
         },
 
         data() {
             return {
+                searchPhrase: "",
+
+                segmentedBarItems: (function() {
+                    var segmentedBarModule = require(
+                        "tns-core-modules/ui/segmented-bar");
+                    let segmentedBarItem1 = new segmentedBarModule.SegmentedBarItem();
+                    segmentedBarItem1.title = "Resturants";
+                    let segmentedBarItem2 = new segmentedBarModule.SegmentedBarItem();
+                    segmentedBarItem2.title = "Menu Items";
+                    return [segmentedBarItem1, segmentedBarItem2];
+                })(),
+                selectedBarIndex: 0,
+
                 countries: [{
                         name: "Australia",
                         imageSrc: "https://play.nativescript.org/dist/assets/img/flags/au.png"
@@ -101,6 +134,13 @@
 </script>
 
 <style scoped>
+    .choiceBar {
+        width: 85%;
+        height: 5%;
+        margin-top: 1%;
+        margin-bottom: 3%;
+    }
+
     .home-panel {
         vertical-align: center;
         font-size: 20;
