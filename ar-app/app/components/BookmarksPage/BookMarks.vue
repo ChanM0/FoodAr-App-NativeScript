@@ -1,17 +1,18 @@
 <template>
   <Page class="page">
-    <ActionBar title="Bookmarks" class="action-bar"/>
+    <ActionBar title="Bookmarks" class="action-bar" backgroundColor="orange"></ActionBar>
     <StackLayout
       orientation="vertical"
       width="100%"
       height="100%"
-      backgroundColor="lightgray"
+      backgroundColor="white"
       @tap="clearFocus"
     >
       <SearchBar
         hint="Search hint"
         :text="searchPhrase"
         @submit="onSearchSubmit"
+        backgroundColor="orange"
         ref="searchBar"
         @itemTap="searchBarTap"
       />
@@ -19,7 +20,8 @@
         :items="segmentedBarItems"
         v-model="selectedBarIndex"
         class="choiceBar"
-        @itemTap="switchBookMarksType"
+        @selectedIndexChange="switchBookMarksType"
+        selectedBackgroundColor="orange"
       />
       <ScrollView>
         <ListView
@@ -45,7 +47,7 @@ export default {
   name: "bookmarks",
   methods: {
     onSearchSubmit(args) {
-      let searchBarx = args.object;
+      let searchBar = args.object;
       console.log("You are searching for " + searchBar.text);
     },
 
@@ -53,26 +55,29 @@ export default {
       console.log("Item with index: " + args.index + " tapped");
     },
     switchBookMarksType: function(args) {
-      console.log("switch");
-      console.log(args);
+      if (this.selectedBarIndex == 1) {
+        this.countries = this.countries1;
+      } else if (this.selectedBarIndex == 0) {
+        this.countries = this.countries2;
+      }
+      this.clearFocus();
     },
     searchBarTap: function(args) {
       this.touchedSearchBar = true;
     },
     clearFocus() {
-      let searchBar = this.$refs.searchBar;
-      if (this.touchedSearchBar) {
-        searchbar.nativeView.dismissSoftInput();
+      try {
+        this.$refs.searchBar.nativeView.dismissSoftInput();
+      } catch (e) {
+        console.log("error");
+        console.log(e);
       }
-      this.touchedSearchBar = false;
     }
   },
 
   data() {
     return {
       searchPhrase: "",
-
-      touchedSearchBar: false,
 
       segmentedBarItems: (function() {
         var segmentedBarModule = require("tns-core-modules/ui/segmented-bar");
@@ -84,7 +89,9 @@ export default {
       })(),
       selectedBarIndex: 0,
 
-      countries: [
+      countries: [],
+
+      countries1: [
         {
           name: "Australia",
           imageSrc: "https://play.nativescript.org/dist/assets/img/flags/au.png"
@@ -112,7 +119,10 @@ export default {
         {
           name: "Czech Republic",
           imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cz.png"
-        },
+        }
+      ],
+
+      countries2: [
         {
           name: "Germany",
           imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"

@@ -1,19 +1,13 @@
 <template>
-  <Page>
-    <bookmarks></bookmarks>
-  </Page>
+  <Page></Page>
 </template>
 
 <script>
-import bookmarks from "./BookMarks";
 export default {
   data() {
     return {
       msg: "Hello World!"
     };
-  },
-  components: {
-    bookmarks
   }
 };
 </script>
