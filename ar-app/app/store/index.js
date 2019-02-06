@@ -1,14 +1,14 @@
-import Vue from 'vue'
+import Vue from 'nativescript-vue'
 import Vuex from 'vuex'
 
 //module imports
-import example from './modules/example'
+import navigation from './modules/navigation'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     modules: {
-        example
+        navigation
     },
     // strict: debug,
     // plugins: debug ? [createLogger()] : []

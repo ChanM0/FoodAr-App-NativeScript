@@ -2,18 +2,17 @@
     <Page enableSwipeBackNavigation="true" actionBarHidden="true">
 		<FlexboxLayout class="page">
 			<StackLayout class="form">
-				<!-- <Image class="logo" src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwik9or8h5DgAhWIh1QKHWGbA4gQjRx6BAgBEAU&url=http%3A%2F%2Fpngimg.com%2Fimgs%2Fanimals%2Fdog%2F&psig=AOvVaw3hfdxA_mhIcc6kgI0LYEab&ust=1548750666196544" /> -->
-				<Label class="header" text="APP NAME" />
+				<Label class="header" text="ARFood" />
 
 				<StackLayout class="input-field" marginBottom="20">
 					<TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" v-model="user.email"
-					 returnKeyType="next" @returnPress="focusPassword" fontSize="18" />
+					 returnKeyType="next" fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
 				<StackLayout class="input-field" marginBottom="20">
 					<TextField ref="password" class="input" hint="Password" secure="true" v-model="user.password" :returnKeyType="'next'"
-					 @returnPress="focusConfirmPassword" fontSize="18" />
+					fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
@@ -36,10 +35,9 @@
     
 </template>
 <script>
-import login from "./login"
+import login from "./Login"
 export default {
-    name: 'Register',
-    comoponents: {
+    components: {
         login
     },
     data() {
@@ -75,7 +73,7 @@ export default {
             userService
                 .login(this.user)
                 .then(() => {
-                    this.$navigateTo(HomePage);
+                    this.$navigateTo(Home);
                 })
                 .catch(() => {
                     this.alert("Unfortunately we could not find your account.");
@@ -87,50 +85,12 @@ export default {
                 this.alert("Your passwords do not match.");
                 return;
             }
-
-            userService
-                .register(this.user)
-                .then(() => {
-                    this.alert("Your account was successfully created.");
-                    this.isLoggingIn = true;
-                })
-                .catch(() => {
-                    this.alert(
-                        "Unfortunately we were unable to create your account."
-                    );
-                });
         },
 
-        forgotPassword() {
-            prompt({
-                title: "Forgot Password",
-                message:
-                    "Enter the email address you used to register for APP NAME to reset your password.",
-                inputType: "email",
-                defaultText: "",
-                okButtonText: "Ok",
-                cancelButtonText: "Cancel"
-            }).then(data => {
-                if (data.result) {
-                    userService
-                        .resetPassword(data.text.trim())
-                        .then(() => {
-                            this.alert(
-                                "Your password was successfully reset. Please check your email for instructions on choosing a new password."
-                            );
-                        })
-                        .catch(() => {
-                            this.alert(
-                                "Unfortunately, an error occurred resetting your password."
-                            );
-                        });
-                }
-            });
-        },
+        // focusPassword() {
+        //     this.$refs.password.nativeView.focus();
+        // },
 
-        focusPassword() {
-            this.$refs.password.nativeView.focus();
-        },
         focusConfirmPassword() {
             if (!this.isLoggingIn) {
                 this.$refs.confirmPassword.nativeView.focus();
@@ -139,7 +99,7 @@ export default {
 
         alert(message) {
             return alert({
-                title: "APP NAME",
+                title: "ARFood",
                 okButtonText: "OK",
                 message: message
             });
@@ -149,67 +109,67 @@ export default {
 </script>
 <style scoped>
 .page {
-		align-items: center;
-		flex-direction: column;
-	}
+    align-items: center;
+    flex-direction: column;
+}
 
-	.form {
-		margin-left: 30;
-		margin-right: 30;
-		flex-grow: 2;
-		vertical-align: middle;
-	}
+.form {
+    margin-left: 30;
+    margin-right: 30;
+    flex-grow: 2;
+    vertical-align: middle;
+}
 
-	.logo {
-		margin-bottom: 12;
-		height: 90;
-		font-weight: bold;
-	}
+/* .logo {
+    margin-bottom: 12;
+    height: 90;
+    font-weight: bold;
+} */
 
-	.header {
-		horizontal-align: center;
-		font-size: 25;
-		font-weight: 600;
-		margin-bottom: 70;
-		text-align: center;
-		color: #D51A1A;
-	}
+.header {
+    horizontal-align: center;
+    font-size: 25;
+    font-weight: 600;
+    margin-bottom: 70;
+    text-align: center;
+    color: orange;
+}
 
-	.input-field {
-		margin-bottom: 25;
-	}
+.input-field {
+    margin-bottom: 25;
+}
 
-	.input {
-		font-size: 18;
-		placeholder-color: #A8A8A8;
-	}
+.input {
+    font-size: 18;
+    placeholder-color: #A8A8A8;
+}
 
-	.input-field .input {
-		font-size: 54;
-	}
+.input-field .input {
+    font-size: 54;
+}
 
-	.btn-primary {
-		height: 50;
-		margin: 30 5 15 5;
-		background-color: #D51A1A;
-		border-radius: 5;
-		font-size: 20;
-		font-weight: 600;
-	}
+.btn-primary {
+    height: 50;
+    margin: 30 5 15 5;
+    background-color: orange;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+}
 
-	.login-label {
-		horizontal-align: center;
-		color: #A8A8A8;
-		font-size: 16;
-	}
+.login-label {
+    horizontal-align: center;
+    color: #A8A8A8;
+    font-size: 16;
+}
 
-	.sign-up-label {
-		margin-bottom: 20;
-	}
+.sign-up-label {
+    margin-bottom: 20;
+}
 
-	.bold {
-		color: #000000;
-	}
+.bold {
+    color: #000000;
+}
 </style>
 
 

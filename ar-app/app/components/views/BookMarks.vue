@@ -1,6 +1,5 @@
 <template>
-  <Page class="page">
-    <ActionBar title="Bookmarks" class="action-bar" backgroundColor="orange"></ActionBar>
+  <GridLayout row="1">
     <StackLayout
       orientation="vertical"
       width="100%"
@@ -39,7 +38,7 @@
         </ListView>
       </ScrollView>
     </StackLayout>
-  </Page>
+  </GridLayout>
 </template>
 
 <script>
