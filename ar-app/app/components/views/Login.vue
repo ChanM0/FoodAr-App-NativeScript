@@ -25,6 +25,7 @@
 	            <Span :text="'Sign up'" class="bold" />
 	          </FormattedString>
 	        </Label>
+            
 		</FlexboxLayout>
 	</Page>
 </template>
