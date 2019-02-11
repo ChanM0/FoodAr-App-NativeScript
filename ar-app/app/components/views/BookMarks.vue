@@ -8,9 +8,10 @@
       @tap="clearFocus"
     >
       <SearchBar
-        hint="Search hint"
-        :text="searchPhrase"
-        @submit="onSearchSubmit"
+        hint="Search 
+        hint"
+        :text="search"
+        @textChange="onType"
         backgroundColor="orange"
         ref="searchBar"
         @itemTap="searchBarTap"
@@ -25,14 +26,14 @@
       <ScrollView>
         <ListView
           class="list-group"
-          for="country in countries"
+          for="bookmark in bookmarkItems"
           @itemTap="onItemTap"
           style="height:90%"
         >
           <v-template>
             <FlexboxLayout flexDirection="row" class="list-group-item">
-              <Image :src="country.imageSrc" class="thumb img-circle"/>
-              <Label :text="country.name" class="list-group-item-heading" style="width: 60%"/>
+              <Image :src="bookmark.imageSrc" class="thumb img-circle"/>
+              <Label :text="bookmark.name" class="list-group-item-heading" style="width: 60%"/>
             </FlexboxLayout>
           </v-template>
         </ListView>
@@ -45,9 +46,38 @@
 export default {
   name: "bookmarks",
   methods: {
-    onSearchSubmit(args) {
+    onType(args) {
       let searchBar = args.object;
       console.log("You are searching for " + searchBar.text);
+      // console.log("Calling filtered Search");
+      // console.log(this.search);
+      console.log(searchBar.text != "");
+      if (searchBar.text != "") {
+        let filtered = this.bookmarkItems.filter(bookmark => {
+          console.log("bookmarks searching");
+          console.log(searchBar.text);
+          console.log("bookmark");
+          console.log(bookmark.name);
+          return bookmark.name.match(searchBar.text);
+        });
+        console.log(filtered);
+        this.bookmarkItems = filtered;
+      } else {
+        this.switchBookMarksType();
+      }
+      this.bookmarkItems = this.bookmarkItems;
+      console.log(this.bookmarkItems);
+      // return this.bookmarkItems;
+      // console.log(this.search);
+      // let filtered = this.bookmarkItems.filter(bookmark => {
+      //   // console.log("bookmarks searching");
+
+      //   // console.log("bookmark");
+      //   // console.log(bookmark.name);
+      //   return bookmark.name.match(this.search);
+      // });
+      // console.log(filtered);
+      // this.bookmarkItems = filtered;
     },
 
     onItemTap: function(args) {
@@ -55,9 +85,9 @@ export default {
     },
     switchBookMarksType: function(args) {
       if (this.selectedBarIndex == 1) {
-        this.countries = this.countries1;
+        this.bookmarkItems = this.countries1;
       } else if (this.selectedBarIndex == 0) {
-        this.countries = this.countries2;
+        this.bookmarkItems = this.countries2;
       }
       this.clearFocus();
     },
@@ -76,51 +106,9 @@ export default {
 
   data() {
     return {
-      searchPhrase: "",
+      search: "",
 
-      segmentedBarItems: (function() {
-        var segmentedBarModule = require("tns-core-modules/ui/segmented-bar");
-        let segmentedBarItem1 = new segmentedBarModule.SegmentedBarItem();
-        segmentedBarItem1.title = "Resturants";
-        let segmentedBarItem2 = new segmentedBarModule.SegmentedBarItem();
-        segmentedBarItem2.title = "Menu Items";
-        return [segmentedBarItem1, segmentedBarItem2];
-      })(),
-      selectedBarIndex: 0,
-
-      countries: [],
-
-      countries1: [
-        {
-          name: "Australia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/au.png"
-        },
-        {
-          name: "Belgium",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/be.png"
-        },
-        {
-          name: "Bulgaria",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/bg.png"
-        },
-        {
-          name: "Canada",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ca.png"
-        },
-        {
-          name: "Switzerland",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ch.png"
-        },
-        {
-          name: "China",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cn.png"
-        },
-        {
-          name: "Czech Republic",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cz.png"
-        }
-      ],
-
+      bookmarkItems: [],
       countries2: [
         {
           name: "Germany",
@@ -162,8 +150,74 @@ export default {
           name: "United States",
           imageSrc: "https://play.nativescript.org/dist/assets/img/flags/us.png"
         }
-      ]
+      ],
+      countries1: [
+        {
+          name: "Australia",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/au.png"
+        },
+        {
+          name: "Belgium",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/be.png"
+        },
+        {
+          name: "Bulgaria",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/bg.png"
+        },
+        {
+          name: "Canada",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ca.png"
+        },
+        {
+          name: "Switzerland",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/ch.png"
+        },
+        {
+          name: "China",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cn.png"
+        },
+        {
+          name: "Czech Republic",
+          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/cz.png"
+        }
+      ],
+
+      segmentedBarItems: (function() {
+        var segmentedBarModule = require("tns-core-modules/ui/segmented-bar");
+        let segmentedBarItem1 = new segmentedBarModule.SegmentedBarItem();
+        segmentedBarItem1.title = "Resturants";
+        let segmentedBarItem2 = new segmentedBarModule.SegmentedBarItem();
+        segmentedBarItem2.title = "Menu Items";
+        return [segmentedBarItem1, segmentedBarItem2];
+      })(),
+
+      selectedBarIndex: 0
     };
+  },
+  computed: {
+    filteredSearch: function() {
+      // console.log("Calling filtered Search");
+      // console.log(this.search);
+      // console.log(this.search != "");
+      // if (this.search != "") {
+      //   let filtered = this.bookmarkItems.filter(bookmark => {
+      //     console.log("bookmarks searching");
+      //     console.log(this.search);
+      //     console.log("bookmark");
+      //     console.log(bookmark.name);
+      //     return bookmark.name.match(this.search);
+      //   });
+      //   console.log(filtered);
+      //   this.bookmarkItems = filtered;
+      // }
+      // this.bookmarkItems = this.bookmarkItems;
+      // console.log(this.bookmarkItems);
+      // return this.bookmarkItems;
+    }
+  },
+  created: function() {
+    console.log("On Created");
+    this.bookmarkItems = this.countries2;
   }
 };
 </script>
