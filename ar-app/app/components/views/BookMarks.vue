@@ -48,36 +48,14 @@ export default {
   methods: {
     onType(args) {
       let searchBar = args.object;
-      console.log("You are searching for " + searchBar.text);
-      // console.log("Calling filtered Search");
-      // console.log(this.search);
-      console.log(searchBar.text != "");
       if (searchBar.text != "") {
         let filtered = this.bookmarkItems.filter(bookmark => {
-          console.log("bookmarks searching");
-          console.log(searchBar.text);
-          console.log("bookmark");
-          console.log(bookmark.name);
           return bookmark.name.match(searchBar.text);
         });
-        console.log(filtered);
         this.bookmarkItems = filtered;
       } else {
         this.switchBookMarksType();
       }
-      this.bookmarkItems = this.bookmarkItems;
-      console.log(this.bookmarkItems);
-      // return this.bookmarkItems;
-      // console.log(this.search);
-      // let filtered = this.bookmarkItems.filter(bookmark => {
-      //   // console.log("bookmarks searching");
-
-      //   // console.log("bookmark");
-      //   // console.log(bookmark.name);
-      //   return bookmark.name.match(this.search);
-      // });
-      // console.log(filtered);
-      // this.bookmarkItems = filtered;
     },
 
     onItemTap: function(args) {
