@@ -67,6 +67,7 @@ export default {
       } else if (this.selectedBarIndex == 0) {
         this.bookmarkItems = this.countries2;
       }
+      // may need to remove , investigate maybe refactor have the if else in another method
       this.clearFocus();
     },
     searchBarTap: function(args) {
