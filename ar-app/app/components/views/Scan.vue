@@ -10,7 +10,7 @@
           reportDuplicates="true"
           preferFrontCamera="false"
           @scanResult="onScanResult"
-          v-show="t == false">
+          v-if="!isIOS">
       </BarcodeScanner>
       
 
@@ -29,8 +29,7 @@ import {isIOS} from "tns-core-modules/platform";
     },
     data() {
       return {
-        isIOS,
-        t: true
+        isIOS
       }
     },
     methods: {
@@ -39,7 +38,6 @@ import {isIOS} from "tns-core-modules/platform";
       },
       doScanWithBackCamera() {
         this.scan(false);
-        this.t = false;
       },
       doScanWithFrontCamera() {
         this.scan(true);
