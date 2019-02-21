@@ -1,13 +1,8 @@
 
 export default {
-	API_KEY: "AIzaSyAARsurLquLDOR5q4ARyjx0uFTR1FAUWPQ",
-	API_URL: "https://www.googleapis.com/identitytoolkit/v3/relyingparty/",
+	API_URL: "https://firestore.googleapis.com/v1beta1/projects/food-ar-8f4c0/databases/(default)/documents/",
 	
-	SIGNUP: "signupNewUser",
-	VERIFY_PASS: "verifyPassword",
-	EMAIL: "getOobConfirmationCode",
-	VERIFY_RESET: "resetPassword",
-	SET_INFO: "setAccountInfo",
-	GET_INFO: "getAccountInfo",
-	DELETE: "deleteAccount"
+	MENUS: "menus",
+	RESTAURANTS: "restuarants",
+	REVIEWS: "reviews"
 }
