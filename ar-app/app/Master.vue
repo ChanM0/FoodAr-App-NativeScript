@@ -12,8 +12,8 @@
 					columns="*,auto,auto,auto">
 				<Label col="0" row="0" text="ARFood" horizontalAlignment="center" class="status-title"></Label>
 			</GridLayout>
-			<GridLayout row="1">
-				<search v-if="selectedTab === 'Search'"></search>
+			<GridLayout width="100%" row="1">
+				<home v-if="selectedTab === 'Home'"></home>
 				<bookmarks v-if="selectedTab === 'Bookmarks'"></bookmarks>
 				<scan v-if="selectedTab === 'Scan'"></scan>
 				<profile v-if="selectedTab === 'Profile'"></profile>
@@ -27,7 +27,7 @@
 <script>
 
 import navBottom from "./components/MasterNavbar";
-import search from './components/views/Search';
+import home from './components/views/Home';
 import scan from './components/views/Scan';
 import settings from './components/views/Settings';
 import profile from './components/views/Profile';
@@ -43,7 +43,7 @@ export default {
 		navBottom,
 		scan,
 		settings,
-		search,
+		home,
 		profile,
 		bookmarks
 	},
@@ -53,7 +53,7 @@ export default {
 <style>
 
 .navStatusBar{
-	background-color: orange;
+	background-color: #C8EDE6;
 }
 
 .status-title {

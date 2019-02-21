@@ -12,7 +12,7 @@
         hint"
         :text="search"
         @textChange="onType"
-        backgroundColor="orange"
+        backgroundColor=""
         ref="searchBar"
         @itemTap="searchBarTap"
       />
@@ -21,7 +21,7 @@
         v-model="selectedBarIndex"
         class="choiceBar"
         @selectedIndexChange="switchBookMarksType"
-        selectedBackgroundColor="orange"
+        selectedBackgroundColor="#A8A8A8"
       />
       <ScrollView>
         <ListView

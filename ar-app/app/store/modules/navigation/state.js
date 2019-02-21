@@ -1,3 +1,3 @@
 export default {
-  selectedTab: 'scan'
+  selectedTab: 'Home'
 };
