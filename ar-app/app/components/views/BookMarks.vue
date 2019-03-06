@@ -12,7 +12,7 @@
         hint"
         :text="search"
         @textChange="onType"
-        backgroundColor=""
+        backgroundColor
         ref="searchBar"
         @itemTap="searchBarTap"
       />

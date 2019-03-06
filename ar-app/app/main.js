@@ -8,16 +8,20 @@ import store from "./store";
 // Prints Vue logs when --env.production is *NOT* set while building
 Vue.config.silent = TNS_ENV === "production";
 
-
-import {TNSFontIcon, fonticon} from 'nativescript-fonticon';
+import { TNSFontIcon, fonticon } from "nativescript-fonticon";
 
 TNSFontIcon.debug = false;
 TNSFontIcon.paths = {
-    'fa': './assets/css/fontawesome.css',
+  fa: "./assets/css/fontawesome.css"
 };
 TNSFontIcon.loadCss();
 
-Vue.filter('fonticon', fonticon)
+Vue.filter("fonticon", fonticon);
+
+Vue.registerElement(
+  "Carousel",
+  () => require("nativescript-carousel").Carousel
+);
 
 new Vue({
   store,
