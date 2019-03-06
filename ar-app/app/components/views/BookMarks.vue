@@ -10,9 +10,10 @@
       <SearchBar
         hint="Search 
         hint"
+        class="searchBar"
         :text="search"
         @textChange="onType"
-        backgroundColor
+        backgroundColor="C7EDE6"
         ref="searchBar"
         @itemTap="searchBarTap"
       />
@@ -21,7 +22,7 @@
         v-model="selectedBarIndex"
         class="choiceBar"
         @selectedIndexChange="switchBookMarksType"
-        selectedBackgroundColor="#A8A8A8"
+        selectedBackgroundColor="#EE3E54"
       />
       <ScrollView>
         <ListView
@@ -205,8 +206,9 @@ export default {
 .choiceBar {
   width: 85%;
   height: 5%;
-  margin-top: 1%;
+  margin-top: 15px;
   margin-bottom: 3%;
+  padding-top: 50px;
 }
 
 .home-panel {
@@ -216,5 +218,9 @@ export default {
 
 .description-label {
   margin-top: 0;
+}
+
+.searchBar {
+  background: #c7ede6;
 }
 </style>
