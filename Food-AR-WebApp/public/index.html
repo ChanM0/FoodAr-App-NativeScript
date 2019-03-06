@@ -33,6 +33,7 @@
     </style>
   </head>
   <body>
+	<!--
     <div id="message">
       <h2>Welcome</h2>
       <h1>Firebase Hosting Setup Complete</h1>
@@ -40,7 +41,10 @@
       <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
-	<img id="myimg">
+	-->
+	<a rel="ar" id="arimg">
+		<img id="myimg">
+	</a>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -57,26 +61,23 @@
         try {
           let app = firebase.app();
           let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+          //document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
 		  
 			var storage = firebase.storage();
 
 			// Create a reference from a Google Cloud Storage URI
-			var image = '0.jpg';
+			var image = 'retrotv.usdz';
 			var gsReference = storage.refFromURL('gs://food-ar-8f4c0.appspot.com/' + image);
 			gsReference.getDownloadURL().then(function(url) {
-				// This can be downloaded directly:
-				var xhr = new XMLHttpRequest();
-				xhr.responseType = 'blob';
-				xhr.onload = function(event) {
-					var blob = xhr.response;
-				};
-				xhr.open('GET', url);
-				xhr.send();
+			
+				//window.location = url;
 
-				// Or inserted into an <img> element:
-				var img = document.getElementById('myimg');
-				img.src = url;
+				var myimg = document.getElementById('myimg');
+				myimg.src = 'https://via.placeholder.com/350x350';
+				var arimg = document.getElementById('arimg');
+				arimg.href = url;//'https://developer.apple.com/arkit/gallery/models/retrotv/retrotv.usdz';
+				
+				//arimg.click();
 			}).catch(function(error) {
 				console.error(e);
 				// Handle any errors
