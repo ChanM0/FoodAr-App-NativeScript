@@ -45,6 +45,7 @@
         width: 100%;
     }
 
+    /*comment this out and put a separator above nav bar*/
     .nav.active {
         background-color: #dddddd;
     }
