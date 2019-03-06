@@ -203,8 +203,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .choiceBar {
   width: 85%;
   height: 5%;
@@ -223,6 +221,6 @@ export default {
 }
 
 .searchBar {
-  background: #C7EDE6;
+  background: #c7ede6;
 }
 </style>
