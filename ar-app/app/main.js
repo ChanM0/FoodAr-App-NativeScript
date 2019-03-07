@@ -18,11 +18,6 @@ TNSFontIcon.loadCss();
 
 Vue.filter("fonticon", fonticon);
 
-Vue.registerElement(
-  "Carousel",
-  () => require("nativescript-carousel").Carousel
-);
-
 new Vue({
   store,
   render: h => h("frame", [h(login)])
