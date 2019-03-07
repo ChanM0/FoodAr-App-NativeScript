@@ -23,9 +23,7 @@
 <script>
 export default {
   name: "Home",
-  components: {
-    arcarousel
-  },
+  components: {},
   methods: {
     clearFocus() {
       try {
