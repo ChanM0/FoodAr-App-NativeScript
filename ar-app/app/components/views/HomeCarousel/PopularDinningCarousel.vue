@@ -8,20 +8,16 @@
     >
       <StackLayout orientation="horizontal">
         <GridLayout
-          class="carousel"
+          class="pop-card-carousel"
           v-for="item in arCollection"
           :key="item.id"
           rows="auto"
           columns="*"
         >
-          <FlexboxLayout class="card-img-thumb">
-            <Image
-              class="card-img-thumb"
-              strecth="aspectFit"
-              :src="item.imageSrc"
-              stretch="aspectFill"
-            />
+          <FlexboxLayout class="pop-card">
+            <Image strecth="aspectFit" :src="item.imageSrc" stretch="aspectFill"/>
           </FlexboxLayout>
+          <Label class="description-of-pop-card" :text="item.name"/>
         </GridLayout>
       </StackLayout>
     </ScrollView>
@@ -30,7 +26,7 @@
 
 <script>
 export default {
-  name: "arCarousel",
+  name: "popularDinningCarousel",
   created: function() {
     console.log("On Created");
   },
@@ -70,13 +66,22 @@ export default {
 </script>
 
 <style>
-.carousel {
+.pop-card-carousel {
   padding-top: 5%;
-  padding-right: 1%;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-bottom: 5%;
 }
 
-.card-img-thumb {
+.description-of-pop-card {
+  size: 100;
+  padding-left: 50;
+  padding-top: 225;
+}
+
+.pop-card {
   width: 300;
   height: 175;
+  border-radius: 25;
 }
 </style>

@@ -7,37 +7,29 @@
       backgroundColor="white"
       @tap="clearFocus"
     >
+      <arCarousel class="ar"></arCarousel>
       <SearchBar
+        class="sb"
         hint="Search 
         hint"
         :text="search"
         @textChange="onType"
         backgroundColor="white"
         ref="searchBar"
-        @itemTap="searchBarTap"
       />
+      <popularDinningCarousel></popularDinningCarousel>
     </StackLayout>
-    <GridLayout row="1">
-      <ScrollView class="anim-images" orientation="horizontal">
-        <StackLayout orientation="horizontal" class>
-          <GridLayout v-for="item in arCollection" :key="item.id" rows="auto" columns="*">
-            <Image
-              class="card-img-thumb"
-              row="0"
-              col="0"
-              :src="item.imageSrc"
-              stretch="aspectFill"
-            />
-          </GridLayout>
-        </StackLayout>
-      </ScrollView>
-    </GridLayout>
   </GridLayout>
 </template>
 <script>
+import arCarousel from "./HomeCarousel/ArCarousel";
+import popularDinningCarousel from "./HomeCarousel/PopularDinningCarousel";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    arCarousel,
+    popularDinningCarousel
+  },
   methods: {
     clearFocus() {
       try {
@@ -52,37 +44,9 @@ export default {
       console.log(searchBar.text);
     }
   },
-
   data() {
     return {
-      search: "",
-      arCollection: [
-        {
-          id: 1,
-          name: "Germany",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"
-        },
-        {
-          id: 2,
-          name: "Spain",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-        },
-        {
-          id: 3,
-          name: "Ethiopia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-        },
-        {
-          id: 4,
-          name: "Croatia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hr.png"
-        },
-        {
-          id: 5,
-          name: "Hungary",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hu.png"
-        }
-      ]
+      search: ""
     };
   },
 
@@ -93,4 +57,9 @@ export default {
 </script>
 
 <style>
+.sb {
+  /* border-radius: 100; */
+  /* margin: 20; */
+  /* border-color: black; */
+}
 </style>
