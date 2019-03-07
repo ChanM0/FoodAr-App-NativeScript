@@ -17,9 +17,23 @@
         @itemTap="searchBarTap"
       />
     </StackLayout>
+    <GridLayout row="1">
+      <ScrollView class="anim-images" orientation="horizontal">
+        <StackLayout orientation="horizontal" class>
+          <GridLayout v-for="item in arCollection" :key="item.id" rows="auto" columns="*">
+            <Image
+              class="card-img-thumb"
+              row="0"
+              col="0"
+              :src="item.imageSrc"
+              stretch="aspectFill"
+            />
+          </GridLayout>
+        </StackLayout>
+      </ScrollView>
+    </GridLayout>
   </GridLayout>
 </template>
-
 <script>
 export default {
   name: "Home",
