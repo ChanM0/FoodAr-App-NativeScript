@@ -17,39 +17,10 @@
         @itemTap="searchBarTap"
       />
     </StackLayout>
-    <ns:Carousel
-      id="myCarousel"
-      items="{{ myDataArray }}"
-      height="100%"
-      width="100%"
-      color="white"
-      pageChanged="myChangeEvent"
-      pageTapped="mySelectedEvent"
-      android:indicatorAnimation="slide"
-      indicatorColor="#fff"
-      indicatorOffset="0,0"
-      showIndicator="true"
-    >
-    <Carousel id="myCarousel" 
-    items="arCollection" 
-    height="100%" width="100%" 
-    color="white" 
-    pageChanged="myChangeEvent" 
-    pageTapped="mySelectedEvent">
-      <Carousel.itemTemplate>
-          <CarouselItem verticalAlignment="middle">
-              <GridLayout>
-                  <Image :src="imageSrc" stretch="aspectFill" />
-                  <Label :text="name" horizontalAlignment="center" backgroundColor="#50000000" height="30" />
-              </GridLayout>
-          </CarouselItem>
-      </Carousel.itemTemplate>
-    </Carousel>
   </GridLayout>
 </template>
 
 <script>
-import arcarousel from "./HomeCarousel/ArCarousel";
 export default {
   name: "Home",
   components: {
