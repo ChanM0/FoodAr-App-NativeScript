@@ -1,5 +1,5 @@
 <template>
-  <GridLayout row="1">
+  <GridLayout row="2">
     <StackLayout
       orientation="vertical"
       width="100%"
@@ -17,18 +17,21 @@
         backgroundColor="white"
         ref="searchBar"
       />
-      <popularDinningCarousel></popularDinningCarousel>
+      <homeOptions class="opt"></homeOptions>
+      <popularDinningCarousel class="pop"></popularDinningCarousel>
     </StackLayout>
   </GridLayout>
 </template>
 <script>
-import arCarousel from "./HomeCarousel/ArCarousel";
-import popularDinningCarousel from "./HomeCarousel/PopularDinningCarousel";
+import arCarousel from "./Home/ArCarousel";
+import popularDinningCarousel from "./Home/PopularDinningCarousel";
+import homeOptions from "./Home/HomeOptions";
 export default {
   name: "Home",
   components: {
     arCarousel,
-    popularDinningCarousel
+    popularDinningCarousel,
+    homeOptions
   },
   methods: {
     clearFocus() {
@@ -57,9 +60,14 @@ export default {
 </script>
 
 <style>
-.sb {
-  /* border-radius: 100; */
-  /* margin: 20; */
-  /* border-color: black; */
+.opt {
+  padding: 0;
+  padding-bottom: 0;
+  margin: 0;
+}
+.pop {
+  /* float: right; */
+  /* margin: 0; */
+  /* padding-top: 100; */
 }
 </style>

@@ -40,8 +40,8 @@ export default {
         return {
             isLoggingIn: true,
             user: {
-                email: "",
-                password: "",
+                email: "a",
+                password: "a",
             }
         };
     },
