@@ -3,56 +3,64 @@
     <StackLayout orientation="horizontal">
       <GridLayout
         class="pop-card-carousel"
-        v-for="item in arCollection"
+        v-for="item in googlePlaceApiGetter"
         :key="item.id"
         rows="auto"
         columns="*"
       >
         <GridLayout row="2">
-          <Image row="0" class="pop-card" stretch="aspectFill" :src="item.imageSrc"/>
-          <Label row="1" class="description-of-pop-card" :text="item.name"/>
+          <!-- <Image
+            row="0"
+            class="pop-card"
+            stretch="aspectFill"
+            :src="item.photos[0].photo_reference.toString()"
+          /> -->
+          <Label row="1" class="description-of-pop-card" @tap="print(item)" :text="item.photos[0].photo_reference"/>
         </GridLayout>
       </GridLayout>
     </StackLayout>
-  </ScrollView>
+  </ScrollView> 
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "popularDinningCarousel",
   created: function() {
-    console.log("On Created");
+    console.log("popular dinning On Created");
+    console.log("popular dinning On Created");
+    console.log("popular dinning On Created");
+    console.log("popular dinning On Created");
+    let formData = {
+      coordinates: "34.235512,-118.531723",
+      radius: "500",
+      types: "restaurant"
+    };
+
+    this.$store.dispatch("googleplaceapi", formData);
+    console.log("popular dinning On finished Created");
+
+    // console.log("computed");
+    // console.log(googlePlaceApiGetter);
+    // console.log("computed");
+  },
+  computed: {
+    ...mapGetters(["googlePlaceApiGetter"])
+
+    // com: function(){}
+    // console.log("computed");
+    // console.log(googlePlaceApiGetter);
+    // console.log("computed");
+  },
+  methods: {
+    print(item) {
+      console.log("CHEcking " + item.photos[0].photo_reference.toString());
+    }
   },
   data() {
     return {
-      search: "",
-      arCollection: [
-        {
-          id: 1,
-          name: "Germany",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"
-        },
-        {
-          id: 2,
-          name: "Spain",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-        },
-        {
-          id: 3,
-          name: "Ethiopia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-        },
-        {
-          id: 4,
-          name: "Croatia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hr.png"
-        },
-        {
-          id: 5,
-          name: "Hungary",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hu.png"
-        }
-      ]
+      search: ""
+      // googlePlaceApiGetter: []
     };
   }
 };

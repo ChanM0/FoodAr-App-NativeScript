@@ -26,6 +26,7 @@
 import arCarousel from "./Home/ArCarousel";
 import popularDinningCarousel from "./Home/PopularDinningCarousel";
 import homeOptions from "./Home/HomeOptions";
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -55,6 +56,11 @@ export default {
 
   created: function() {
     console.log("On Created");
+    console.log("On Created");
+    console.log("On Created");
+    // this.$store.dispatch("populategoogleapi");
+    console.log("Finished Created");
+    // ...mapGetters(["googlePlaceApiGetter"]);
   }
 };
 </script>
