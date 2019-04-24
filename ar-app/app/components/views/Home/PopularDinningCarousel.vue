@@ -9,13 +9,23 @@
         columns="*"
       >
         <GridLayout row="2">
-          <!-- <Image
-            row="0"
-            class="pop-card"
-            stretch="aspectFill"
-            :src="item.photos[0].photo_reference.toString()"
-          /> -->
-          <Label row="1" class="description-of-pop-card" @tap="print(item)" :text="item.photos[0].photo_reference"/>
+          <GridLayout
+          class="pop-card-carousel"
+          v-for="photo in item.photos"
+          :key="photo.photo_reference"
+          rows="auto"
+          columns="*"
+        >
+          <GridLayout row="2">
+            <Image
+              row="0"
+              class="pop-card"
+              stretch="aspectFill"
+              :src="photo.photo_reference"
+            />
+          </GridLayout>
+        </GridLayout>
+          <Label row="1" class="description-of-pop-card" @tap="print(item.photos.photos[0])" :text="item.name"/>
         </GridLayout>
       </GridLayout>
     </StackLayout>
@@ -54,7 +64,7 @@ export default {
   },
   methods: {
     print(item) {
-      console.log("CHEcking " + item.photos[0].photo_reference.toString());
+      console.log("CHEcking " + item.photo_reference.toString());
     }
   },
   data() {
