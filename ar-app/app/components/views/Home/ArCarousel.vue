@@ -1,75 +1,74 @@
 <template>
-  <GridLayout row="1">
-    <ScrollView
-      row="1"
-      orientation="horizontal"
-      scrollBarIndicatorVisible="false"
-      paddingRight="15"
-    >
-      <StackLayout orientation="horizontal">
+  <ScrollView row="1" orientation="horizontal" scrollBarIndicatorVisible="false">
+    <StackLayout orientation="horizontal">
+      <GridLayout
+        class="pop-card-carousel"
+        v-for="item in googlePlaceApiGetter"
+        :key="item.id"
+        rows="auto"
+        columns="*"
+      >
         <GridLayout
-          class="carousel"
-          v-for="item in arCollection"
-          :key="item.id"
+          v-for="photo in item.photos"
+          :key="photo.photo_reference"
           rows="auto"
           columns="*"
         >
-          <Image class="card-img-thumb" stretch="aspectFill" :src="item.imageSrc"/>
+          <Image class="pop-card" stretch="aspectFill" :src="photo.photo_reference"/>
         </GridLayout>
-      </StackLayout>
-    </ScrollView>
-  </GridLayout>
+        <Label class="description-of-pop-card" :text="item.name"/>
+      </GridLayout>
+    </StackLayout>
+  </ScrollView>
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
-  name: "arCarousel",
+  name: "popularDinningCarousel",
   created: function() {
-    console.log("On Created");
+    let formData = {
+      coordinates: "34.235512,-118.531723",
+      radius: "500",
+      types: "restaurant"
+    };
+
+    this.$store.dispatch("googleplaceapi", formData);
+  },
+  computed: {
+    ...mapGetters(["googlePlaceApiGetter"])
+  },
+  methods: {
+    print(item) {
+      console.log("CHEcking " + item.photo_reference.toString());
+    }
   },
   data() {
     return {
-      search: "",
-      arCollection: [
-        {
-          id: 1,
-          name: "Germany",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/de.png"
-        },
-        {
-          id: 2,
-          name: "Spain",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/es.png"
-        },
-        {
-          id: 3,
-          name: "Ethiopia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/et.png"
-        },
-        {
-          id: 4,
-          name: "Croatia",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hr.png"
-        },
-        {
-          id: 5,
-          name: "Hungary",
-          imageSrc: "https://play.nativescript.org/dist/assets/img/flags/hu.png"
-        }
-      ]
+      search: ""
     };
   }
 };
 </script>
 
 <style>
-.carousel {
-  padding-top: 1%;
-  padding-right: 1%;
+.pop-card-carousel {
+  padding-left: 15%;
+  /* padding-right: 20%; */
+  /* padding-bottom: 5%; */
 }
 
-.card-img-thumb {
+.description-of-pop-card {
+  float: right;
+  size: 100;
+  padding-left: 50%;
+  padding-top: 120;
+  color: white;
+}
+
+.pop-card {
   width: 300;
   height: 140;
+  border-radius: 25;
 }
 </style>
