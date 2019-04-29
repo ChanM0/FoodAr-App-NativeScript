@@ -25,7 +25,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
-  name: "popularDinningCarousel",
   created: function() {
     let formData = {
       coordinates: "34.235512,-118.531723",

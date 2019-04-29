@@ -3,6 +3,10 @@ import Vue from "nativescript-vue";
 import login from "./components/views/Login.vue";
 import store from "./store";
 
+import VueDevtools from "nativescript-vue-devtools";
+
+Vue.use(VueDevtools);
+
 // Vue.registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
 // Prints Vue logs when --env.production is *NOT* set while building

@@ -30,27 +30,33 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+import restaurantProfile from "../RestaurantProfile";
 export default {
   name: "popularDinningCarousel",
+
   created: function() {
     let formData = {
       coordinates: "34.235512,-118.531723",
       radius: "500",
       types: "restaurant"
     };
-
     this.$store.dispatch("googleplaceapi", formData);
   },
   computed: {
     ...mapGetters(["googlePlaceApiGetter"])
   },
   methods: {
-    print(item) {
-      // console.log("CHEcking " + item.photo_reference.toString());
-    },
     getPlaceInfo(item) {
       let api = item.place_id;
       this.$store.dispatch("restaurantInfo", api);
+      console.log("restaurantProfile api was hit");
+      try {
+        this.$navigateTo(restaurantProfile);
+      } catch (e) {
+        console.log("error");
+        console.log(e);
+      }
+      console.log("restaurantProfile was suppose to be navigated too");
     }
   },
   data() {
