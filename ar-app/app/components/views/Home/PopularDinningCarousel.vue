@@ -8,15 +8,21 @@
         rows="auto"
         columns="*"
       >
-        <GridLayout
+        <!-- <GridLayout
           v-for="photo in item.photos"
           :key="photo.photo_reference"
           rows="auto"
           columns="*"
-        >
-          <Image class="pop-card" stretch="aspectFill" :src="photo.photo_reference"/>
-        </GridLayout>
-        <Label class="description-of-pop-card" :text="item.name"/>
+        ></GridLayout>-->
+        <Button
+          row="6"
+          col="6"
+          class="pop-card"
+          :backgroundImage="item.photos[0].photo_reference"
+          @tap="getPlaceInfo(item)"
+          text="helllo"
+        />
+        <!-- <Label class="description-of-pop-card" :text="item.name"/> -->
       </GridLayout>
     </StackLayout>
   </ScrollView>
@@ -40,7 +46,11 @@ export default {
   },
   methods: {
     print(item) {
-      console.log("CHEcking " + item.photo_reference.toString());
+      // console.log("CHEcking " + item.photo_reference.toString());
+    },
+    getPlaceInfo(item) {
+      let api = item.place_id;
+      this.$store.dispatch("restaurantInfo", api);
     }
   },
   data() {

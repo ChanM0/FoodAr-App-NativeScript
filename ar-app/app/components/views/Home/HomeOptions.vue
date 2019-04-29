@@ -11,7 +11,16 @@
 
 <script>
 export default {
-  name: "homeOptions"
+  name: "homeOptions",
+  methods: {
+    onButtonTap() {
+      console.log("tapped");
+      console.log("tapped");
+      console.log("tapped");
+      console.log("tapped");
+      console.log("tapped");
+    }
+  }
 };
 </script>
 

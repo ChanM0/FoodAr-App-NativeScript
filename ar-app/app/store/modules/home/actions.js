@@ -14,5 +14,10 @@ export default {
       commit("GOOGLEPLACEAPI", res.data);
       // console.log(res.data);
     });
+  },
+  restaurantInfo({ commit }, api) {
+    axios.get(api).then(function(res) {
+      commit("RESTAURANTINFO", res.data);
+    });
   }
 };

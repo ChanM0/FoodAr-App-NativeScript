@@ -1,3 +1,4 @@
 export default {
-  googlePlaceApiResults: null
+  googlePlaceApiResults: null,
+  restaurantInfoResults: null
 };
