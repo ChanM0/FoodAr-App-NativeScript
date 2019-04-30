@@ -13,16 +13,12 @@ export default {
     // console.log(payload.photos);
     // console.log(payload.data);
     payload.photos.forEach(element => {
-      console.log("element start");
-      // console.log(element);
       let key = "key=AIzaSyCGSGFdT9e2xBE0FyzN-AC0WZpSuHv8PWk";
       let photosApi = "https://maps.googleapis.com/maps/api/place/photo?";
       let photoreference = "photoreference=" + element.photo_reference;
       let maxwidth = "maxwidth=400";
       photosApi += maxwidth + "&" + photoreference + "&" + key;
       element.photo_reference = photosApi;
-      console.log(element.photo_reference);
-      console.log("element end");
     });
     state.restaurantInfoResults = payload;
     // console.log("state");

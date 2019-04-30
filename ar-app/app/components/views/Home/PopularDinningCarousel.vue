@@ -8,12 +8,6 @@
         rows="auto"
         columns="*"
       >
-        <GridLayout
-          v-for="photo in item.photos"
-          :key="photo.photo_reference"
-          rows="auto"
-          columns="*"
-        ></GridLayout>
         <Button
           row="6"
           col="6"

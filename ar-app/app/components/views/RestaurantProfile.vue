@@ -1,114 +1,69 @@
 <template>
   <page>
-    <GridLayout width="100%">
-      <StackLayout alignItems="center">
-        <Image src="~/assets/images/profile.png" stretch="aspectFill" class="profilePic"></Image>
-        <Label
-          text="Aurora Mary"
-          color="#000"
-          fontSize="19"
-          fontWeight="bold"
-          textAlignment="center"
-        />
-        <StackLayout orientation="horizontal" class="followersContainer">
-          <StackLayout width="33%">
-            <Label :text="'fa-camera' | fonticon" fontSize="18" class="followersTxtValue fas"/>
-            <Label text="Upload Image " class="followersTxt"/>
-          </StackLayout>
-          <StackLayout width="33%">
-            <Label :text="'fa-user-edit' | fonticon" fontSize="18" class="followersTxtValue fas"/>
-            <Label text="Edit Profile " class="followersTxt"/>
-          </StackLayout>
-          <StackLayout width="33%">
-            <Label :text="'fa-comment-alt' | fonticon" fontSize="18" class="followersTxtValue fas"/>
-            <Label text="Submit" class="followersTxt"/>
-            <Label text="Feedback " class="followersTxt"/>
-          </StackLayout>
-        </StackLayout>
-        <StackLayout class="aboutContainer">
-          <StackLayout orientation="horizontal">
-            <Label
-              :text="'fa-map-marker-alt' | fonticon"
-              fontSize="16"
-              class="fas"
-              style="color:#EF3D53;"
-            />
-            <Label text="New York" style="font-size:16;color:#000;margin-left:9;margin-top:1;"/>
-          </StackLayout>
-          <StackLayout orientation="horizontal" class="aboutRow">
-            <Label
-              :text="'fa-paragraph' | fonticon"
-              fontSize="16"
-              class="fas"
-              style="text-align:left;color:#EF3D53;"
-            />
-            <Label
-              text="I'm a real fun guy like marty mcfly, but I have..."
-              style="font-size:16;color:#000;margin-left:9;margin-top:1;"
-            />
-          </StackLayout>
-        </StackLayout>
-        <StackLayout style="margin-top:10;">
-          <Button text="Logout" class="btn btn-primary" width="50%" @tap="toggleLogout"/>
-        </StackLayout>
+    <GridLayout row="2">
+      <StackLayout
+        orientation="vertical"
+        width="100%"
+        height="100%"
+        backgroundColor="white"
+        @tap="clearFocus"
+      >
+        <imageCarousel></imageCarousel>
+        <Label class="text" :text="restaurantInfoApiGetter.name"/>
+        <Label class="text" :text="restaurantInfoApiGetter.rating"/>
+        <Label class="text" :text="restaurantInfoApiGetter.formatted_address"/>
+        <Label class="text" :text="restaurantInfoApiGetter.formatted_phone_number"/>
       </StackLayout>
     </GridLayout>
   </page>
 </template>
 
 <script>
-import login from "./Login";
+import imageCarousel from "./RestaurantProfileComponents/ImageCarousel";
 import { mapState, mapGetters, mapActions } from "vuex";
+const geolocation = require("nativescript-geolocation");
+const { Accuracy } = require("tns-core-modules/ui/enums");
 export default {
   name: "restaurantProfile",
   computed: {
     ...mapGetters(["restaurantInfoApiGetter"])
   },
+  components: {
+    imageCarousel
+  },
   methods: {
-    toggleLogout() {
-      this.$navigateTo(login);
+    clearFocus() {
+      try {
+        this.$refs.searchBar.nativeView.dismissSoftInput();
+      } catch (e) {
+        console.log("error");
+        console.log(e);
+      }
     }
   }
 };
 </script>
 
 <style>
-.profilePic {
-  width: 150;
-  height: 150;
-  border-radius: 100;
-  margin: 20;
-  border-color: #c8ede6;
-  border-width: 1;
+.lab {
+}
+.pop-card-carousel {
+  padding-left: 15%;
+  /* padding-right: 20%; */
+  /* padding-bottom: 5%; */
 }
 
-.aboutContainer {
-  width: 85%;
-  border-radius: 15;
-  background: #eeeeee;
-  margin-top: 20;
-  padding-top: 20;
-  padding-bottom: 20;
-  padding-left: 20;
-  padding-right: 20;
+.description-of-pop-card {
+  float: right;
+  size: 100;
+  padding-left: 50%;
+  padding-top: 120;
+  color: white;
 }
 
-.followersTxt {
-  text-align: center;
-  font-size: 14;
-  height: 20;
-}
-
-.followersTxtValue {
-  text-align: center;
-  margin-top: 10;
-  height: 25;
-  font-size: 22;
-  font-weight: bold;
-  color: #000;
-}
-
-.followersContainer {
-  width: 90%;
+.pop-card {
+  width: 300;
+  height: 140;
+  border-radius: 25;
 }
 </style>
