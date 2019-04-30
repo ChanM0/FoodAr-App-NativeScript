@@ -58,8 +58,12 @@
 
 <script>
 import login from "./Login";
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "restaurantProfile",
+  computed: {
+    ...mapGetters(["restaurantInfoApiGetter"])
+  },
   methods: {
     toggleLogout() {
       this.$navigateTo(login);

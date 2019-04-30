@@ -17,7 +17,7 @@ export default {
   },
   restaurantInfo({ commit }, api) {
     axios.get(api).then(function(res) {
-      commit("RESTAURANTINFO", res.data);
+      commit("RESTAURANTINFO", res.data.result);
     });
   }
 };
