@@ -7,6 +7,17 @@ import VueDevtools from "nativescript-vue-devtools";
 
 Vue.use(VueDevtools);
 
+import * as platform from "platform";
+
+if (platform.isIOS)
+  GMSServices.provideAPIKey("AIzaSyCGSGFdT9e2xBE0FyzN-AC0WZpSuHv8PWk");
+
+/* registering MapView element */
+Vue.registerElement(
+  "MapView",
+  () => require("nativescript-google-maps-sdk").MapView
+);
+
 // Vue.registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
 // Prints Vue logs when --env.production is *NOT* set while building
