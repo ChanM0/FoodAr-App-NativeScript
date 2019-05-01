@@ -1,6 +1,7 @@
 <template>
   <page>
-    <WebView src="https://food-ar-8f4c0.firebaseapp.com/?image=cake"/>
+    <!-- <WebView src="https://food-ar-8f4c0.firebaseapp.com/?image=cake"/> -->
+    
   </page>
 </template>
 

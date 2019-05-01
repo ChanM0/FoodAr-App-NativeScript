@@ -40,7 +40,12 @@ export default {
       console.log("tapped");
       console.log("tapped");
       console.log("tapped");
-      this.$navigateTo(arImage);
+      var utilityModule = require("utils/utils");
+
+      utilityModule.openUrl(
+        "https://food-ar-8f4c0.firebaseapp.com/?image=bananaMan"
+      );
+      // this.$navigateTo(arImage);
     }
   }
 };
