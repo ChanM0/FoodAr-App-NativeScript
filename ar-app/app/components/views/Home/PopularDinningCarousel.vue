@@ -8,12 +8,6 @@
         rows="auto"
         columns="*"
       >
-        <GridLayout
-          v-for="photo in item.photos"
-          :key="photo.photo_reference"
-          rows="auto"
-          columns="*"
-        ></GridLayout>
         <Button
           row="6"
           col="6"
@@ -31,7 +25,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import restaurantProfile from "../RestaurantProfile";
-// import login from "../Login";
 
 export default {
   name: "popularDinningCarousel",
@@ -51,15 +44,12 @@ export default {
     getPlaceInfo(item) {
       let api = item.place_id;
       this.$store.dispatch("restaurantInfo", api);
-      // console.log("Was");
-      console.log("restaurantProfile api was hit");
       try {
         this.$navigateTo(restaurantProfile);
       } catch (e) {
         console.log("error");
         console.log(e);
       }
-      console.log("restaurantProfile was suppose to be navigated too");
     }
   },
   data() {

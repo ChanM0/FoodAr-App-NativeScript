@@ -71,9 +71,4 @@ export default {
   padding-bottom: 0;
   margin: 0;
 }
-.pop {
-  /* float: right; */
-  /* margin: 0; */
-  /* padding-top: 100; */
-}
 </style>
