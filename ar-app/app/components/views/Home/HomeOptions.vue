@@ -1,17 +1,38 @@
 <template>
-  <GridLayout class="button-grid" columns="*,*,*" rows="*,*,*">
-    <Button text="Button" row="0" col="0" @tap="onButtonTap" backgroundColor="#43b883"/>
-    <Button text="Button" row="0" col="1" @tap="onButtonTap" backgroundColor="#1c6b48"/>
-    <Button text="Button" row="0" col="2" @tap="onButtonTap" backgroundColor="#43b883"/>
-    <Button text="Button" row="1" col="0" @tap="onButtonTap" backgroundColor="#289062"/>
-    <Button text="Button" row="1" col="1" @tap="onButtonTap" backgroundColor="#43b883"/>
-    <Button text="Button" row="1" col="2" @tap="onButtonTap" backgroundColor="#289062"/>
+  <GridLayout
+    class="navBottom"
+    height="60"
+    width="100%"
+    row="5"
+    rows="auto"
+    columns="auto,auto,auto,auto,auto"
+  >
+    <GridLayout rows="*,auto" cols="auto" class="nav" col="1" row="0" width="20%">
+      <Label class="fas" row="0" @tap="onButtonTap" :text="'fa-hamburger' | fonticon" fontSize="24"></Label>
+      <Label row="1" text="French" class="navText"></Label>
+    </GridLayout>
+    <GridLayout rows="*,auto" cols="auto" class="nav" col="2" row="0" width="20%">
+      <Label class="fas" row="0" @tap="onButtonTap" :text="'fa-hamburger' | fonticon" fontSize="24"></Label>
+      <Label row="1" text="Mexican" class="navText"></Label>
+    </GridLayout>
+    <GridLayout rows="*,auto" cols="auto" class="nav" col="3" row="0" width="20%">
+      <Label class="fas" row="0" @tap="onButtonTap" :text="'fa-hamburger' | fonticon" fontSize="24"></Label>
+      <Label row="1" text="American" class="navText"></Label>
+    </GridLayout>
+    <GridLayout rows="*,auto" cols="auto" class="nav" col="4" row="0" width="20%">
+      <Label class="fas" row="0" @tap="onButtonTap" :text="'fa-hamburger' | fonticon" fontSize="24"></Label>
+      <Label row="1" text="Fancy" class="navText"></Label>
+    </GridLayout>
   </GridLayout>
 </template>
 
 <script>
+import arImage from "./ArImage";
 export default {
   name: "homeOptions",
+  components: {
+    arImage
+  },
   methods: {
     onButtonTap() {
       console.log("tapped");
@@ -19,6 +40,7 @@ export default {
       console.log("tapped");
       console.log("tapped");
       console.log("tapped");
+      this.$navigateTo(arImage);
     }
   }
 };

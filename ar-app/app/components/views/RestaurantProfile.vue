@@ -194,9 +194,7 @@ ActionBar {
   background-color: #474747;
   color: white;
 }
-Page {
-  background-color: #474747;
-}
+
 TextView {
   border-bottom-color: transparent;
   color: white;
