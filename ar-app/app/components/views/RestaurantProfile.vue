@@ -184,7 +184,6 @@ export default {
 </script>
 
 <style>
-
 button {
   font-size: 9;
   background-color: #474747;
