@@ -1,4 +1,4 @@
-<template>
+<!--<template>
        <GridLayout columns="*" rows="auto, auto, auto, auto">
       <Label row="0" class="message" text="Check the console log for scanned barcodes" textWrap="true"></Label>
 
@@ -96,3 +96,4 @@ import {isIOS} from "tns-core-modules/platform";
 }
 
 </style>
+-->

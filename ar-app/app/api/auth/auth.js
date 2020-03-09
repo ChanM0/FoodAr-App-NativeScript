@@ -82,7 +82,7 @@ const ChangeUserPassword = function(idToken, password, success, error) {
 		"returnSecureToken": true
 	};
 
-	instance.post(config.GET_INFO, data).then( response => {
+	instance.post(config.SET_INFO, data).then( response => {
 		success(response.data);
 	}, err => {
 		error(err);
